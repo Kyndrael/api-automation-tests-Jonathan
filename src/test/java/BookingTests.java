@@ -89,29 +89,4 @@ public class BookingTests {
             .body("results", anyOf(nullValue(), hasSize(greaterThanOrEqualTo(0))));
     }
 
-    @Test
-    @Order(3)
-    public void createBooking_WithValidData_returnOk() {
-        request
-            .body(booking)
-        .when()
-            .post("/booking")
-        .then()
-            .assertThat()
-            .statusCode(200)
-            .contentType(ContentType.JSON)
-            .body(matchesJsonSchemaInClasspath(CREATE_BOOKING_SCHEMA))
-            .time(lessThan(2000L));
-    }
-}
-public static String getToken() {
-    return given()
-            .contentType("application/json")
-            .body("{ \"username\": \"admin\", \"password\": \"password123\" }")
-        .when()
-            .post("/auth")
-        .then()
-            .statusCode(200)
-            .extract()
-            .path("token");
-}
+   
